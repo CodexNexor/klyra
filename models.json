@@ -1,0 +1,10 @@
+{
+  "models": [
+    "opencode/deepseek-v4-flash-free",
+    "opencode/nemotron-3-ultra-free",
+    "opencode/north-mini-code-free",
+    "opencode/mimo-v2.5-free"
+  ],
+  "variants": ["low", "medium", "high", "max"],
+  "updated_at": "2025-01-01T00:00:00Z"
+}

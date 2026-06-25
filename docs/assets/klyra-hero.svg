@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Klyra hero banner</title>
+  <desc id="desc">A terminal-inspired product banner for Klyra, a self-hosted AI security lab.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#060713"/>
+      <stop offset="0.55" stop-color="#101427"/>
+      <stop offset="1" stop-color="#071b16"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0" stop-color="#54f5a8"/>
+      <stop offset="1" stop-color="#8fb7ff"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="520" fill="url(#bg)"/>
+  <g opacity=".22">
+    <path d="M0 95H1200M0 185H1200M0 275H1200M0 365H1200M0 455H1200" stroke="#8fb7ff"/>
+    <path d="M120 0V520M300 0V520M480 0V520M660 0V520M840 0V520M1020 0V520" stroke="#54f5a8"/>
+  </g>
+  <rect x="82" y="82" width="1036" height="356" rx="18" fill="#070915" stroke="#2f405f"/>
+  <rect x="82" y="82" width="1036" height="42" rx="18" fill="#111827"/>
+  <circle cx="114" cy="103" r="7" fill="#ff6b6b"/>
+  <circle cx="138" cy="103" r="7" fill="#ffd166"/>
+  <circle cx="162" cy="103" r="7" fill="#54f5a8"/>
+  <text x="600" y="109" text-anchor="middle" fill="#8a96b8" font-family="monospace" font-size="15">klyra://authorized-lab</text>
+  <text x="130" y="205" fill="#54f5a8" filter="url(#glow)" font-family="monospace" font-size="88" font-weight="800">KLYRA</text>
+  <text x="132" y="252" fill="#dbe7ff" font-family="monospace" font-size="28">Self-hosted AI security lab</text>
+  <text x="132" y="296" fill="#8a96b8" font-family="monospace" font-size="20">Fresh LXD workspaces • OpenCode in-container • Admin controls • Evidence-first reports</text>
+  <g transform="translate(760 170)">
+    <rect width="260" height="150" rx="14" fill="#0f172a" stroke="#32415f"/>
+    <text x="24" y="44" fill="#54f5a8" font-family="monospace" font-size="18">$ klyra run</text>
+    <text x="24" y="78" fill="#dbe7ff" font-family="monospace" font-size="15">scope: authorized-lab</text>
+    <text x="24" y="108" fill="#dbe7ff" font-family="monospace" font-size="15">container: fresh</text>
+    <text x="24" y="138" fill="#dbe7ff" font-family="monospace" font-size="15">report: ready</text>
+  </g>
+  <path d="M128 352H500" stroke="url(#line)" stroke-width="3" filter="url(#glow)"/>
+</svg>

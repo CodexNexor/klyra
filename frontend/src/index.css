@@ -1,0 +1,1093 @@
+/* ─── Fonts ──────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap');
+
+/* ─── Reset & Base ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'VT323', 'Courier New', monospace;
+  background: #1a1a2e;
+  color: #b8c8e0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  image-rendering: pixelated;
+  font-size: 18px;
+}
+a { color: #5c94fc; text-decoration: none; transition: all 0.2s; }
+a:hover { text-shadow: 0 0 8px #5c94fc, 0 0 16px #5c94fc; }
+::selection { background: #5c94fc55; color: #fff; }
+
+/* ─── Minecraft-style Color Palette ──────────────────── */
+:root {
+  --mc-dark: #1a1a2e;
+  --mc-stone: #3d3d4a;
+  --mc-dirt: #8B6B3E;
+  --mc-grass: #5B8731;
+  --mc-grass-top: #7BC35A;
+  --mc-wood: #6B4226;
+  --mc-gold: #FBD000;
+  --mc-iron: #C0C0C0;
+  --mc-red: #AA0000;
+  --mc-blue: #5C94FC;
+  --mc-purple: #B02FB0;
+  --mc-green: #55FF55;
+  --mc-cyan: #55FFFF;
+  --mc-text: #b8c8e0;
+  --mc-text-dim: #6a7a90;
+  --mc-border: #2a2a3e;
+  --mc-bg-panel: rgba(0,0,0,0.75);
+  --mc-shadow: rgba(0,0,0,0.6);
+  --dark: #1a1a2e;
+  --stone: #3d3d4a;
+  --green: #55FF55;
+  --gold: #FBD000;
+  --red: #AA0000;
+  --blue: #5C94FC;
+  --cyan: #55FFFF;
+  --text: #b8c8e0;
+  --text-dim: #6a7a90;
+  --border: #2a2a3e;
+  --green-bg: rgba(85,255,85,0.06);
+  --gold-bg: rgba(251,208,0,0.08);
+}
+
+/* ─── 480p Scanline Overlay ─────────────────────────── */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+}
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+}
+@keyframes crt-flicker {
+  0% { opacity: 0.97; }
+  25% { opacity: 0.98; }
+  50% { opacity: 1; }
+  75% { opacity: 0.97; }
+  100% { opacity: 0.98; }
+}
+/* body { animation: crt-flicker 0.15s infinite; } */
+
+/* ─── Headings ───────────────────────────────────────── */
+h1, h2, h3, .pixel-font {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+}
+h1 { font-size: clamp(1.4rem, 5vw, 3rem); color: var(--mc-gold); }
+h2 { font-size: clamp(1rem, 3.5vw, 2rem); color: var(--mc-green); }
+h3 { font-size: clamp(0.6rem, 2vw, 1rem); }
+
+/* ─── Minecraft Grass/Dirt Border Pattern ────────────── */
+.mc-border {
+  border: 3px solid var(--mc-stone);
+  box-shadow:
+    0 -4px 0 0 var(--mc-grass-top) inset,
+    0 4px 0 0 var(--mc-dirt) inset,
+    -4px 0 0 0 var(--mc-stone) inset,
+    4px 0 0 0 var(--mc-stone) inset,
+    0 0 0 2px #000;
+  position: relative;
+  image-rendering: pixelated;
+}
+
+/* ─── Pixel Button (Minecraft Style) ─────────────────── */
+.pixel-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  padding: 16px 28px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  color: #fff;
+  background: #5c5c6a;
+  box-shadow:
+    0 -4px 0 0 #7a7a8a inset,
+    0 4px 0 0 #2a2a3a inset,
+    -4px 0 0 0 #6a6a7a inset,
+    4px 0 0 0 #3a3a4a inset;
+  transition: all 0.08s;
+  image-rendering: pixelated;
+  letter-spacing: 1px;
+}
+.pixel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 -5px 0 0 #8a8a9a inset,
+    0 5px 0 0 #1a1a2a inset,
+    -5px 0 0 0 #7a7a8a inset,
+    5px 0 0 0 #2a2a3a inset;
+}
+.pixel-btn:active { transform: translateY(2px); box-shadow: 0 -2px 0 0 #4a4a5a inset, 0 2px 0 0 #3a3a4a inset, -2px 0 0 0 #4a4a5a inset, 2px 0 0 0 #3a3a4a inset; }
+.pixel-btn.primary { background: #5B8731; box-shadow: 0 -4px 0 0 #7BC35A inset, 0 4px 0 0 #3a5a1a inset, -4px 0 0 0 #6BA340 inset, 4px 0 0 0 #4a6a2a inset; }
+.pixel-btn.primary:hover { background: #6B9741; box-shadow: 0 -5px 0 0 #8BD36A inset, 0 5px 0 0 #2a4a0a inset, -5px 0 0 0 #7BB350 inset, 5px 0 0 0 #3a5a1a inset; }
+.pixel-btn.danger { background: #8B2020; box-shadow: 0 -4px 0 0 #BB4040 inset, 0 4px 0 0 #4a1010 inset, -4px 0 0 0 #9B3030 inset, 4px 0 0 0 #5a1515 inset; }
+.pixel-btn.danger:hover { background: #AB3030; }
+.pixel-btn.gold { background: #B8960A; color: #1a1a2e; box-shadow: 0 -4px 0 0 #FBD000 inset, 0 4px 0 0 #6a5500 inset, -4px 0 0 0 #D4B000 inset, 4px 0 0 0 #8A7000 inset; }
+.pixel-btn.gold:hover { background: #D4B000; }
+.pixel-btn.small { padding: 10px 16px; font-size: 0.4rem; }
+
+/* ─── Pixel Input (Minecraft Sign Style) ─────────────── */
+.pixel-input {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  background: #0d0d1a;
+  color: #d0d8e8;
+  border: 2px solid var(--mc-stone);
+  padding: 12px 16px;
+  width: 100%;
+  outline: none;
+  box-shadow:
+    0 -2px 0 var(--mc-stone) inset,
+    0 2px 0 #000 inset,
+    -2px 0 0 var(--mc-stone) inset,
+    2px 0 0 #000 inset,
+    inset 0 0 20px rgba(0,0,0,0.5);
+}
+.pixel-input:focus {
+  border-color: var(--blue);
+  box-shadow:
+    0 0 0 2px var(--blue),
+    0 -2px 0 var(--blue) inset,
+    0 2px 0 #000 inset,
+    -2px 0 0 var(--blue) inset,
+    2px 0 0 #000 inset,
+    inset 0 0 20px rgba(92,148,252,0.08);
+}
+.pixel-input::placeholder { color: #2a3a4a; }
+
+/* ─── Pixel Card (Minecraft Inventory Slot) ──────────── */
+.pixel-card {
+  background: rgba(0,0,0,0.6);
+  padding: 24px;
+  box-shadow:
+    0 -3px 0 0 var(--mc-stone) inset,
+    0 3px 0 0 #000 inset,
+    -3px 0 0 0 var(--mc-stone) inset,
+    3px 0 0 0 #000 inset,
+    0 0 0 1px #1a1a2e;
+  position: relative;
+  transition: all 0.15s;
+  image-rendering: pixelated;
+}
+.pixel-card:hover {
+  box-shadow:
+    0 -3px 0 0 var(--mc-grass-top) inset,
+    0 3px 0 0 #000 inset,
+    -3px 0 0 0 var(--mc-grass-top) inset,
+    3px 0 0 0 #000 inset,
+    0 0 20px rgba(85,255,85,0.06);
+}
+
+/* ─── Layout ─────────────────────────────────────────── */
+.page-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding-top: 64px;
+  opacity: 0;
+  animation: fadeInPage 0.5s ease forwards;
+}
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Navbar (Minecraft Inventory Bar) ───────────────── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(20,20,35,0.97);
+  border-bottom: 3px solid var(--mc-stone);
+  padding: 0 16px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 0 #000;
+}
+.nav-brand {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: var(--mc-gold);
+  text-shadow: 2px 2px 0 #000, 0 0 20px rgba(251,208,0,0.3);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-brand:hover { text-shadow: 2px 2px 0 #000, 0 0 30px rgba(251,208,0,0.6); }
+.nav-links { display: flex; gap: 2px; align-items: center; }
+.nav-links a {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  padding: 8px 12px;
+  color: var(--mc-text);
+  transition: all 0.1s;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: #d0d8e8;
+  border-color: var(--mc-grass);
+  background: rgba(85,255,85,0.08);
+}
+
+/* ─── Hero ───────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+.hero-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(2rem, 8vw, 5rem);
+  color: var(--mc-gold);
+  text-shadow:
+    4px 4px 0 #000,
+    0 0 20px rgba(251,208,0,0.4),
+    0 0 40px rgba(251,208,0,0.2);
+  margin-bottom: 10px;
+  line-height: 1.2;
+  letter-spacing: 6px;
+}
+.hero-sub {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: var(--mc-text-dim);
+  margin-bottom: 30px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+@keyframes glitch {
+  0%, 90%, 100% { transform: none; opacity: 1; }
+  92% { transform: translate(-3px, 2px) skew(1deg); opacity: 0.85; text-shadow: 3px 0 var(--mc-red), -3px 0 var(--mc-cyan); }
+  94% { transform: translate(3px, -2px) skew(-1deg); opacity: 0.9; text-shadow: -3px 0 var(--mc-red), 3px 0 var(--mc-cyan); }
+  96% { transform: translate(-2px, 1px); opacity: 0.88; }
+}
+.hero-glitch { animation: glitch 4s infinite; }
+
+/* ─── Feature Grid ───────────────────────────────────── */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 40px 16px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.feature-card { text-align: center; padding: 24px 16px; }
+.feature-card h3 { font-size: 0.5rem; margin-bottom: 10px; color: var(--mc-gold); }
+.feature-card p { font-size: 0.85rem; color: var(--mc-text-dim); line-height: 1.5; }
+.feature-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+
+/* ─── Terminal Box (Minecraft Chat Style) ────────────── */
+.terminal-box {
+  background: rgba(0,0,0,0.85);
+  border: 3px solid var(--mc-stone);
+  padding: 20px;
+  min-height: 160px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  color: #d0d8e8;
+  box-shadow:
+    0 0 0 2px #000,
+    0 -2px 0 var(--mc-stone) inset,
+    0 2px 0 #000 inset,
+    -2px 0 0 var(--mc-stone) inset,
+    2px 0 0 #000 inset;
+  position: relative;
+}
+.terminal-line { margin-bottom: 4px; word-break: break-word; opacity: 0; animation: terminalFadeIn 0.3s ease forwards; }
+@keyframes terminalFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.terminal-line .prompt { color: #5c94fc; }
+.terminal-line .output { color: #6a7a90; }
+.terminal-line .error { color: var(--mc-red); }
+.terminal-line .cmd { color: #fff; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.terminal-cursor::after { content: '▎'; animation: blink 1s step-end infinite; color: #5c94fc; }
+
+/* ─── Login ──────────────────────────────────────────── */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.login-box { width: 100%; max-width: 400px; padding: 36px 28px; }
+.login-box h2 { text-align: center; margin-bottom: 24px; }
+.login-box .pixel-input { margin-bottom: 14px; }
+.login-box .pixel-btn { width: 100%; margin-top: 8px; }
+.login-divider { text-align: center; color: var(--mc-text-dim); margin: 16px 0; font-size: 0.7rem; }
+
+/* ─── Dashboard ──────────────────────────────────────── */
+.dashboard { padding: 24px 16px; max-width: 1200px; margin: 0 auto; }
+.dashboard h2 { margin-bottom: 20px; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.stat-card { padding: 20px; text-align: center; }
+.stat-value {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.1rem;
+  color: var(--mc-gold);
+  margin-bottom: 4px;
+}
+.stat-label { font-size: 0.7rem; color: var(--mc-text-dim); }
+.session-list { margin-top: 24px; }
+.session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 6px;
+  background: rgba(0,0,0,0.4);
+  border: 2px solid var(--mc-border);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.session-item:hover {
+  border-color: var(--mc-grass);
+  background: rgba(85,255,85,0.04);
+  transform: translateX(4px);
+}
+.session-item .name { color: var(--mc-text); font-size: 0.85rem; }
+.session-item .meta { color: var(--mc-text-dim); font-size: 0.65rem; }
+
+/* ─── Playground ─────────────────────────────────────── */
+.playground {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  height: calc(100vh - 84px);
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+.playground-sidebar {
+  background: rgba(10,10,20,0.92);
+  border-right: 3px solid var(--mc-stone);
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 4px 0 0 #000;
+}
+.playground-sidebar h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: var(--mc-gold);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--mc-border);
+  margin: 0;
+}
+.playground-main {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 20px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.4);
+}
+.playground-chat {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 12px;
+  padding: 24px;
+  background: rgba(0,0,0,0.7);
+  border: 2px solid var(--mc-border);
+  box-shadow:
+    inset 0 0 40px rgba(0,0,0,0.6),
+    0 -2px 0 var(--mc-stone) inset,
+    2px 0 0 #000 inset;
+  min-height: 200px;
+}
+.playground-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  padding-bottom: 4px;
+}
+.playground-input-row .pixel-input {
+  flex: 1;
+  font-size: 1.15rem;
+  padding: 16px 18px;
+}
+.playground-input-row .pixel-btn {
+  white-space: nowrap;
+  font-size: 0.6rem;
+  padding: 16px 28px;
+  min-width: 120px;
+}
+
+/* ─── Messages ───────────────────────────────────────── */
+.msg {
+  margin-bottom: 14px;
+  opacity: 0;
+  animation: msgIn 0.25s ease forwards;
+  max-width: 100%;
+}
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.msg-left { display: flex; flex-direction: column; align-items: flex-start; }
+.msg-right { display: flex; flex-direction: column; align-items: flex-end; }
+.msg-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 2px;
+  letter-spacing: 0.5px;
+}
+.msg-bubble {
+  max-width: 85%;
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.msg-right .msg-bubble {
+  background: rgba(92,148,252,0.1);
+  border: 1px solid rgba(92,148,252,0.2);
+}
+.msg-content {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #d0d8e8;
+}
+.user-content {
+  color: #e0e8f0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.msg-content p { margin-bottom: 10px; }
+.msg-content p:last-child { margin-bottom: 0; }
+.msg-content code {
+  background: rgba(255,255,255,0.06);
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  color: #e8d0a0;
+  border-radius: 4px;
+}
+.msg-content pre {
+  background: #0d0d1a;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 12px 0;
+  border: 1px solid #2a2a3e;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #c8d0d8;
+}
+.msg-content pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+.msg-content table {
+  border-collapse: collapse;
+  margin: 12px 0;
+  width: 100%;
+  font-size: 0.85rem;
+  background: rgba(0,0,0,0.3);
+}
+.msg-content th, .msg-content td {
+  border: 2px solid var(--mc-border);
+  padding: 10px 14px;
+  text-align: left;
+}
+.msg-content th {
+  background: rgba(0,0,0,0.5);
+  color: var(--mc-gold);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+}
+.msg-content blockquote {
+  border-left: 4px solid var(--mc-grass);
+  padding-left: 16px;
+  margin: 12px 0;
+  color: var(--mc-text-dim);
+  background: rgba(91,135,49,0.04);
+  padding: 10px 16px;
+  font-size: 0.9rem;
+}
+.msg-content ul, .msg-content ol {
+  padding-left: 32px;
+  margin: 10px 0;
+}
+.msg-content li { margin-bottom: 6px; }
+.msg-content a { color: var(--mc-cyan); text-decoration: underline; }
+.msg-content hr {
+  border: none;
+  border-top: 2px solid var(--mc-border);
+  margin: 20px 0;
+}
+.msg-content img { max-width: 100%; border: 2px solid var(--mc-border); }
+
+/* ─── History Items ──────────────────────────────────── */
+.history-item {
+  padding: 12px 14px;
+  margin-bottom: 4px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--mc-border);
+  cursor: pointer;
+  transition: all 0.1s;
+  font-size: 0.85rem;
+  position: relative;
+}
+.history-item:hover {
+  border-color: var(--mc-grass);
+  background: rgba(85,255,85,0.06);
+  transform: translateX(2px);
+}
+.history-item.active {
+  border-color: var(--mc-green);
+  background: rgba(85,255,85,0.08);
+  box-shadow: inset 3px 0 0 var(--mc-green);
+}
+.history-item .h-title {
+  color: var(--mc-text);
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+  padding-right: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.history-item .h-meta {
+  color: var(--mc-text-dim);
+  font-size: 0.65rem;
+}
+
+.model-selector { margin-bottom: 12px; }
+.model-selector label {
+  display: block;
+  font-size: 0.5rem;
+  font-family: 'Press Start 2P', monospace;
+  color: var(--mc-text-dim);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+}
+.model-selector select {
+  width: 100%;
+  font-family: 'VT323', monospace;
+  font-size: 0.95rem;
+  background: #0d0d1a;
+  color: #d0d8e8;
+  border: 2px solid var(--mc-border);
+  padding: 10px 12px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.model-selector select:hover { border-color: var(--mc-stone); }
+.model-selector select:focus { border-color: var(--mc-green); box-shadow: 0 0 0 1px var(--mc-green); }
+
+/* ─── Sidebar Chat List ──────────────────────────────── */
+.sidebar-chat-list {
+  overflow-y: auto;
+  flex: 1;
+  margin-top: 4px;
+  min-height: 0;
+}
+.sidebar-chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar-chat-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-chat-list::-webkit-scrollbar-thumb {
+  background: var(--mc-border);
+  border-radius: 0;
+}
+
+/* ─── Provision Screen ───────────────────────────────── */
+.provision-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 84px);
+  padding: 40px 20px;
+  text-align: center;
+}
+.provision-screen h2 {
+  font-size: 0.7rem;
+  margin-bottom: 24px;
+}
+.provision-step {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  color: var(--mc-text-dim);
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: provisionFade 0.3s ease forwards;
+}
+.provision-step.active {
+  color: #d0d8e8;
+}
+.provision-step.done {
+  color: #d0d8e8;
+  opacity: 0.6;
+}
+@keyframes provisionFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.provision-progress {
+  width: 320px;
+  height: 16px;
+  background: #0d0d1a;
+  border: 2px solid var(--mc-border);
+  margin-top: 20px;
+  overflow: hidden;
+  position: relative;
+}
+.provision-progress-fill {
+  height: 100%;
+  background: var(--mc-green);
+  transition: width 0.3s;
+  box-shadow: 0 0 12px var(--mc-green);
+}
+.provision-progress-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  color: var(--mc-text-dim);
+  margin-top: 10px;
+}
+.provision-error {
+  color: var(--mc-red);
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+/* ─── File Browser in Playground ─────────────────────── */
+.pg-file-browser {
+  margin-top: 8px;
+}
+.pg-file-path {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  word-break: break-all;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pg-file-item {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
+  transition: background 0.1s;
+}
+.pg-file-item:hover {
+  background: rgba(85,255,85,0.04);
+}
+.pg-file-content {
+  background: #000;
+  padding: 10px;
+  margin: 0 0 4px 14px;
+  font-size: 0.75rem;
+  max-height: 120px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  color: var(--green);
+}
+
+/* ─── Pricing ────────────────────────────────────────── */
+.pricing-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 16px 60px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.pricing-card { max-width: 360px; width: 100%; text-align: center; padding: 32px 24px; }
+.pricing-card.featured {
+  border-color: var(--mc-gold);
+  box-shadow:
+    0 -3px 0 0 var(--mc-gold) inset,
+    0 3px 0 0 #000 inset,
+    -3px 0 0 0 var(--mc-gold) inset,
+    3px 0 0 0 #000 inset,
+    0 0 40px rgba(251,208,0,0.1);
+  transform: scale(1.03);
+}
+.pricing-card .price {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2.2rem;
+  color: var(--mc-gold);
+  text-shadow: 0 0 20px var(--mc-gold);
+  margin: 16px 0;
+}
+.pricing-card .price-label { font-size: 0.7rem; color: var(--mc-text-dim); margin-bottom: 20px; }
+.pricing-card .perks { text-align: left; margin: 20px 0; }
+.pricing-card .perks li {
+  list-style: none;
+  padding: 8px 0;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--mc-border);
+}
+.pricing-card .perks li::before { content: '▸ '; color: var(--mc-green); }
+.pricing-card .pixel-btn { width: 100%; }
+.pricing-crypto {
+  margin-top: 14px;
+  padding: 14px;
+  background: rgba(0,0,0,0.5);
+  border: 2px solid var(--mc-border);
+  font-size: 0.6rem;
+  color: var(--mc-text-dim);
+  word-break: break-all;
+}
+.pricing-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+.pricing-toggle span {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+  color: var(--mc-text-dim);
+  transition: color 0.2s;
+}
+.pricing-toggle span.active { color: var(--mc-gold); }
+
+/* ─── Terms & Contact ────────────────────────────────── */
+.terms-page, .contact-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 16px 60px;
+}
+.terms-page h2, .contact-page h2 { margin-bottom: 20px; }
+.terms-page h3 { font-size: 0.5rem; color: var(--mc-gold); margin: 24px 0 10px; }
+.terms-page p, .contact-page p { font-size: 0.85rem; line-height: 1.7; color: var(--mc-text-dim); margin-bottom: 14px; }
+.contact-page form { margin-top: 24px; }
+.contact-page .pixel-input { margin-bottom: 14px; }
+.contact-page textarea.pixel-input { min-height: 130px; resize: vertical; }
+
+/* ─── Status Bar ─────────────────────────────────────── */
+.status-bar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(20,20,35,0.97);
+  border-top: 3px solid var(--mc-stone);
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.35rem;
+  color: var(--mc-text-dim);
+  box-shadow: 0 -4px 0 #000;
+}
+.status-bar .gold { color: var(--mc-gold); }
+.status-bar .green { color: var(--mc-green); }
+.status-bar .red { color: var(--mc-red); }
+
+/* ─── Toggle ─────────────────────────────────────────── */
+.pixel-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.pixel-toggle label {
+  font-size: 0.45rem;
+  font-family: 'Press Start 2P', monospace;
+  color: var(--mc-text-dim);
+  cursor: pointer;
+}
+.toggle-track {
+  width: 40px; height: 18px;
+  background: #0d0d1a;
+  border: 2px solid var(--mc-border);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.1s;
+}
+.toggle-track.active { border-color: var(--mc-green); }
+.toggle-knob {
+  width: 12px; height: 12px;
+  background: var(--mc-text-dim);
+  position: absolute; top: 1px; left: 2px;
+  transition: all 0.1s;
+}
+.toggle-track.active .toggle-knob { left: 24px; background: var(--mc-green); box-shadow: 0 0 6px var(--mc-green); }
+
+/* ─── Boot Screen ────────────────────────────────────── */
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: bootFadeOut 0.5s ease 3.5s forwards;
+}
+@keyframes bootFadeOut {
+  to { opacity: 0; pointer-events: none; }
+}
+.boot-text {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  color: #d0d8e8;
+  margin-bottom: 4px;
+  opacity: 0;
+  animation: bootLine 0.2s ease forwards;
+}
+.boot-progress {
+  width: 280px; height: 14px;
+  background: #0d0d1a;
+  border: 2px solid var(--mc-border);
+  overflow: hidden;
+  margin-top: 16px;
+}
+.boot-progress-fill {
+  height: 100%;
+  background: var(--mc-green);
+  transition: width 0.12s;
+  box-shadow: 0 0 10px var(--mc-green);
+}
+
+/* ─── Animations ─────────────────────────────────────── */
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.float { animation: float 3s ease-in-out infinite; }
+@keyframes pulse-glow { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+.pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* ─── Tool Decision Panel ────────────────────────────── */
+.tool-decision-panel {
+  margin-top: 10px;
+  padding: 12px;
+  background: rgba(170,0,0,0.08);
+  border: 2px solid var(--mc-red);
+  animation: msgIn 0.25s ease forwards;
+}
+.tool-decision-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  color: var(--mc-red);
+  margin-bottom: 8px;
+}
+.tool-decision-cmd {
+  background: #000;
+  padding: 8px 10px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--mc-gold);
+  margin-bottom: 10px;
+  border: 1px solid var(--mc-border);
+  word-break: break-all;
+}
+.tool-decision-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tool-decision-buttons .pixel-btn {
+  font-size: 0.4rem;
+  padding: 6px 12px;
+}
+.question-custom-input { width: 100%; margin-top: 8px; }
+.question-custom-input .pixel-input { width: 100%; font-size: 0.75rem; }
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .playground { grid-template-columns: 1fr; }
+  .playground-sidebar { display: none; }
+  .nav-links a { font-size: 0.3rem; padding: 4px; }
+  .nav-brand { font-size: 0.4rem; }
+  .features { grid-template-columns: 1fr; }
+  .hero-title { font-size: clamp(1.5rem, 8vw, 2.2rem); }
+  .pricing-card.featured { transform: none; }
+}
+
+/* ─── Collapsible Tool Output ────────────────────────── */
+.msg-content details {
+  background: #0a0a14;
+  border: 1px solid var(--mc-border);
+  margin: 8px 0;
+  padding: 6px 10px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+}
+.msg-content details summary {
+  color: var(--mc-gold);
+  cursor: pointer;
+  font-size: 0.7rem;
+  user-select: none;
+}
+.msg-content details summary:hover {
+  color: #d0d8e8;
+}
+.msg-content details pre {
+  margin: 6px 0 0;
+  padding: 8px;
+  background: #000;
+  overflow-x: auto;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+/* ─── Loading Animation ──────────────────────────── */
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  padding: 8px 0;
+}
+.dot-pulse {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  animation: dotPulse 1.2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+.btn-loading {
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(92,148,252,0.12);
+  border: 2px solid var(--blue);
+  border-radius: 4px;
+  padding: 12px 20px;
+}
+.btn-loading .dot-pulse {
+  width: 14px;
+  height: 14px;
+}
+
+/* ─── Command Cards ─────────────────────────────── */
+.cmd-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+.cmd-item {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.3);
+}
+.cmd-item.open {
+  border-color: var(--blue);
+}
+.cmd-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  transition: background 0.1s;
+}
+.cmd-header:hover {
+  background: rgba(255,255,255,0.04);
+}
+.cmd-icon {
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  color: var(--gold);
+}
+.cmd-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+}
+.cmd-arrow {
+  flex-shrink: 0;
+  color: var(--text-dim);
+  font-size: 0.65rem;
+}
+.cmd-body {
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+}
+.cmd-code {
+  background: #0a0a14;
+  padding: 10px;
+  font-size: 0.7rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #c8d0d8;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+.cmd-output {
+  background: #0a0a14;
+  padding: 8px;
+  font-size: 0.7rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #6a7a90;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.cmd-meta {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  opacity: 0.6;
+}

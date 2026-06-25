@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Local runtime state
+.env
+data/
+logs/
+sessions/
+*.log
+cloudflared.log
+server_out.log
+tunnel.log
+deploy.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Secrets and certificates
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx

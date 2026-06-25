@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-labelledby="title desc">
+  <title id="title">Klyra architecture</title>
+  <desc id="desc">Browser, API, database, LXD, and isolated container architecture diagram.</desc>
+  <defs>
+    <style>
+      .box{fill:#0b1020;stroke:#40506f;stroke-width:2}
+      .title{fill:#e8f1ff;font:700 24px monospace}
+      .text{fill:#9fb0d0;font:16px monospace}
+      .small{fill:#7f91b4;font:14px monospace}
+      .line{stroke:#54f5a8;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#54f5a8"/>
+    </marker>
+  </defs>
+  <rect width="1100" height="620" fill="#060713"/>
+  <text x="70" y="62" fill="#54f5a8" font-family="monospace" font-size="34" font-weight="800">Klyra Architecture</text>
+
+  <rect class="box" x="70" y="120" width="220" height="130" rx="12"/>
+  <text class="title" x="100" y="165">Browser UI</text>
+  <text class="text" x="100" y="198">React + Vite</text>
+  <text class="small" x="100" y="226">chat, admin, files</text>
+
+  <rect class="box" x="440" y="120" width="220" height="130" rx="12"/>
+  <text class="title" x="476" y="165">FastAPI</text>
+  <text class="text" x="476" y="198">auth + sessions</text>
+  <text class="small" x="476" y="226">SSE chat stream</text>
+
+  <rect class="box" x="810" y="120" width="220" height="130" rx="12"/>
+  <text class="title" x="850" y="165">SQLite</text>
+  <text class="text" x="850" y="198">encrypted PII</text>
+  <text class="small" x="850" y="226">users, sessions</text>
+
+  <rect class="box" x="250" y="360" width="260" height="150" rx="12"/>
+  <text class="title" x="300" y="407">LXD API</text>
+  <text class="text" x="300" y="440">storage + network</text>
+  <text class="small" x="300" y="468">fresh instance lifecycle</text>
+
+  <rect class="box" x="660" y="342" width="300" height="190" rx="12"/>
+  <text class="title" x="712" y="390">Container</text>
+  <text class="text" x="712" y="424">Kali image</text>
+  <text class="text" x="712" y="454">OpenCode installed inside</text>
+  <text class="small" x="712" y="486">/root/projects workspace</text>
+
+  <path class="line" d="M290 185H440"/>
+  <path class="line" d="M660 185H810"/>
+  <path class="line" d="M550 250V360"/>
+  <path class="line" d="M510 435H660"/>
+  <path class="line" d="M810 342V250"/>
+
+  <text x="70" y="575" fill="#7f91b4" font-family="monospace" font-size="16">Operator intent stays in the browser/API. Tool execution happens inside the isolated LXD workspace.</text>
+</svg>
